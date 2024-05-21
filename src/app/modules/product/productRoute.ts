@@ -4,7 +4,7 @@ const productRoute = express.Router();
 
 productRoute.get('/:productId?', productController.getProduct);
 productRoute.post('', productController.createdProduct);
-productRoute.put('', productController.updateProduct);
+productRoute.put('/:productId?', productController.updateProduct);
 productRoute.delete('', productController.deleteProduct);
 
 export default productRoute;

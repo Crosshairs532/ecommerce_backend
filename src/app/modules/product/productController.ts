@@ -1,18 +1,17 @@
 import { Request, Response } from 'express';
-import productService from './productService';
+
 import productValidation from './productValidation';
-import productModel from './productModel';
+import productService from './productService';
 
 const createdProduct = async (req: Request, res: Response) => {
   const data = req.body;
-  console.log(data, 'data');
   try {
     const { error, value } =
       productValidation.validate(data); /* validate using joi*/
     if (error) {
       return res.status(500).json({ message: error });
     }
-    const result = await productService(data);
+    const result = await productService.createProduct(data);
     return res.status(200).json({
       success: true,
       message: 'product Created successfully',
@@ -24,25 +23,26 @@ const createdProduct = async (req: Request, res: Response) => {
 };
 const getProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
-  const filter = {};
-  console.log(filter, productId);
-  if (productId) {
-    filter._id = productId;
-  }
-
   try {
-    const result = await productModel.find(filter);
-    res.status(200).json({
-      success: true,
-      message: 'Product fetched successfully!',
-      data: result,
-    });
+    const result = await productService.getProductService(productId);
+    // console.log(result, 'result');
+    if (result?.length > 0) {
+      res.status(200).json({
+        success: true,
+        message: 'Product fetched successfully!',
+        data: result,
+      });
+    } else {
+      res.status(500).json({ success: false, message: 'no such value exists' });
+    }
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
 
-const updateProduct = (res: Response, req: Request) => {};
+const updateProduct = (res: Response, req: Request) => {
+  const { productId } = req.params;
+};
 const deleteProduct = (res: Response, req: Request) => {};
 
 export default { createdProduct, getProduct, updateProduct, deleteProduct };
