@@ -10,7 +10,7 @@ const createProduct = async (products: product) => {
     return err;
   }
 };
-const getProductService = async (productId: { productId: string }) => {
+const getProductService = async (productId: string) => {
   const filter = {};
   //   console.log(filter, productId);
   if (productId) {
@@ -23,4 +23,19 @@ const getProductService = async (productId: { productId: string }) => {
     return error;
   }
 };
-export default productService = { createProduct, getProductService };
+const updateProductService = async (Uproduct: product, productId: string) => {
+  const res = await productModel.findByIdAndUpdate(
+    { _id: productId },
+    { $set: Uproduct },
+    {
+      new: true,
+    },
+  );
+  return res;
+};
+
+export default productService = {
+  createProduct,
+  getProductService,
+  updateProductService,
+};

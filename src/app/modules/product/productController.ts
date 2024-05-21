@@ -40,8 +40,22 @@ const getProduct = async (req: Request, res: Response) => {
   }
 };
 
-const updateProduct = (res: Response, req: Request) => {
+const updateProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
+  const { error, value } = productValidation.validate(req.body);
+  if (error) {
+    return res.status(500).json({ message: error.details });
+  }
+  try {
+    const result = await productService.updateProductService(value, productId);
+    res.json({
+      success: true,
+      message: 'Product updated successfully!',
+      data: result,
+    });
+  } catch (err) {
+    res.json({ message: err.message });
+  }
 };
 const deleteProduct = (res: Response, req: Request) => {};
 
