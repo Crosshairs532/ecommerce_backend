@@ -24,20 +24,24 @@ const createdProduct = async (req: Request, res: Response) => {
 };
 const getProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
-  let filter = {};
+  const filter = {};
+  console.log(filter, productId);
   if (productId) {
-    try {
-      const result = await productModel.find({ _id: productId });
-      res.status(200).json({
-        success: true,
-        message: 'Product fetched successfully!',
-        data: result,
-      });
-    } catch (error) {
-      res.status(500).json({ success: false, message: error.message });
-    }
+    filter._id = productId;
+  }
+
+  try {
+    const result = await productModel.find(filter);
+    res.status(200).json({
+      success: true,
+      message: 'Product fetched successfully!',
+      data: result,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };
+
 const updateProduct = (res: Response, req: Request) => {};
 const deleteProduct = (res: Response, req: Request) => {};
 
