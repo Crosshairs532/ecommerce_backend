@@ -23,8 +23,14 @@ const createdProduct = async (req: Request, res: Response) => {
 };
 const getProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
+  const { searchTerm } = req.query;
+  console.log(searchTerm);
+
   try {
-    const result = await productService.getProductService(productId);
+    const result = await productService.getProductService(
+      productId,
+      searchTerm,
+    );
     // console.log(result, 'result');
     if (result?.length > 0) {
       res.status(200).json({

@@ -10,12 +10,26 @@ const createProduct = async (products: product) => {
     return err;
   }
 };
-const getProductService = async (productId: string) => {
-  const filter = {};
+const getProductService = async (
+  productId: string | null,
+  searchParam: string | null,
+) => {
+  let filter = {};
+
   //   console.log(filter, productId);
   if (productId) {
     filter._id = productId;
   }
+  if (searchParam) {
+    filter = {
+      $or: [
+        { name: { $regex: new RegExp(searchParam, 'i') } },
+        { description: { $regex: new RegExp(searchParam, 'i') } },
+        { category: { $regex: new RegExp(searchParam, 'i') } },
+      ],
+    };
+  }
+
   try {
     const result = await productModel.find(filter);
     return result;
