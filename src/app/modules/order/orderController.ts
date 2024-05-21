@@ -35,7 +35,7 @@ const newOrder = async (req: Request, res: Response) => {
     } else {
       return res.json({
         success: false,
-        message: 'Insufficient quantity available in inventory',
+        message: `Insufficient quantity available in inventory`,
       });
     }
   } else {
@@ -58,7 +58,9 @@ const getOrder = async (req: Request, res: Response) => {
     if (result.length > 0) {
       return res.status(200).json({
         success: true,
-        message: 'Orders fetched successfully for user email!',
+        message: email
+          ? 'Orders fetched successfully for user email!'
+          : 'Orders fetched successfully!',
         data: result,
       });
     } else {

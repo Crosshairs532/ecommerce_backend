@@ -66,9 +66,7 @@ const updateProductService = async (
       },
     );
 
-    console.log();
     if (Uproduct.inventory.quantity - quantity <= 0) {
-      console.log('dhuskos?');
       const res = await productModel.updateOne(
         { _id: productId },
         {

@@ -14,7 +14,7 @@ const createdProduct = async (req: Request, res: Response) => {
     const result = await productService.createProduct(data);
     return res.status(200).json({
       success: true,
-      message: 'product Created successfully',
+      message: 'Product created successfully!',
       data: value,
     });
   } catch (err: unknown) {
@@ -69,11 +69,18 @@ const deleteProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
   try {
     const result = await productService.deleteProductService(productId);
-    res.json({
-      success: true,
-      message: 'Product deleted successfully!',
-      data: null,
-    });
+    if (result) {
+      res.json({
+        success: true,
+        message: 'Product deleted successfully!',
+        data: null,
+      });
+    } else {
+      res.json({
+        success: false,
+        message: 'Product does not exist!',
+      });
+    }
   } catch (err) {
     res.json({ message: err.message });
   }
