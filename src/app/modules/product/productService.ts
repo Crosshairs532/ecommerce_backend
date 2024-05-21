@@ -34,8 +34,21 @@ const updateProductService = async (Uproduct: product, productId: string) => {
   return res;
 };
 
+const deleteProductService = async (productId: string) => {
+  try {
+    const res = await productModel.findByIdAndDelete(
+      { _id: productId },
+      { new: true },
+    );
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
 export default productService = {
   createProduct,
   getProductService,
   updateProductService,
+  deleteProductService,
 };

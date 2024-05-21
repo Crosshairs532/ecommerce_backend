@@ -57,6 +57,18 @@ const updateProduct = async (req: Request, res: Response) => {
     res.json({ message: err.message });
   }
 };
-const deleteProduct = (res: Response, req: Request) => {};
+const deleteProduct = async (req: Request, res: Response) => {
+  const { productId } = req.params;
+  try {
+    const result = await productService.deleteProductService(productId);
+    res.json({
+      success: true,
+      message: 'Product deleted successfully!',
+      data: null,
+    });
+  } catch (err) {
+    res.json({ message: err.message });
+  }
+};
 
 export default { createdProduct, getProduct, updateProduct, deleteProduct };
