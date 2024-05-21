@@ -10,6 +10,13 @@ const newOrder = async (value: order) => {
     return error;
   }
 };
-const getOrder = async () => {};
+const getOrder = async (param: string | null) => {
+  try {
+    const res = await orderModel.find(param);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
 
 export default orderService = { newOrder, getOrder };

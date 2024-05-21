@@ -37,15 +37,61 @@ const getProductService = async (
     return error;
   }
 };
-const updateProductService = async (Uproduct: product, productId: string) => {
-  const res = await productModel.findByIdAndUpdate(
-    { _id: productId },
-    { $set: Uproduct },
-    {
-      new: true,
-    },
-  );
-  return res;
+const updateProductService = async (
+  Uproduct: product,
+  productId: string,
+  isCheck = 'product',
+  quantity = 0,
+) => {
+  if (isCheck == 'product') {
+    const res = await productModel.findByIdAndUpdate(
+      { _id: productId },
+      { $set: Uproduct },
+      {
+        new: true,
+      },
+    );
+    return res;
+  } else if (isCheck == 'order') {
+    // console.log(Uproduct);
+    const res = await productModel.updateOne(
+      { _id: productId },
+      {
+        $inc: {
+          'inventory.quantity': -quantity,
+        },
+      },
+      {
+        new: true,
+      },
+    );
+
+    console.log();
+    if (Uproduct.inventory.quantity - quantity <= 0) {
+      console.log('dhuskos?');
+      const res = await productModel.updateOne(
+        { _id: productId },
+        {
+          $set: {
+            name: Uproduct.name,
+            description: Uproduct.description,
+            price: Uproduct.price,
+            category: Uproduct.category,
+            tags: Uproduct.tags,
+            variants: Uproduct.variants,
+            inventory: {
+              quantity: Uproduct.inventory.quantity - quantity,
+              inStock: false,
+            },
+          },
+        },
+        {
+          new: true,
+        },
+      );
+    }
+    return;
+  }
 };
 
 const deleteProductService = async (productId: string) => {
