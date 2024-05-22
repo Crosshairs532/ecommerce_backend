@@ -1,5 +1,5 @@
 ## Ecommerce Backend
-###### after cloning the github repo . You have to install the dependencies. YOu may see below dependencies. 
+#### after cloning the github repositories . You have to install the dependencies. YOu may see below dependencies. 
 ___
 ```
     "cors": "^2.8.5",
@@ -9,7 +9,7 @@ ___
     "mongoose": "^8.4.0",
   
 ```
-## These are some dependencies and dev-dependencies you have to install. 
+### These are some dependencies and dev-dependencies you have to install. 
 ___
 
 1. `npm i cors`
@@ -25,7 +25,7 @@ ___
 11. `npm i @types/cors`
 12. `npm i @types/express`
 
-### Go to the package.json file. You will see these scripts which to make your work easy.
+#### Go to the package.json file. You will see these scripts which to make your work easy.
 ___
 ```
   "scripts": {
@@ -38,7 +38,7 @@ ___
     "start": "ts-node-dev --respawn --transpile-only src/server.ts"
   },
 ```
-### after all of these installation your can run the project easily. But if You face any problem Go through the package.json file and install whatever causing the problem. 
+#### after all of these installation your can run the project easily. But if You face any problem Go through the package.json file and install whatever causing the problem. 
 ## Here is a important blog that may help you. 
 ___
 [BLOG](https://blog.logrocket.com/linting-typescript-eslint-prettier/)
