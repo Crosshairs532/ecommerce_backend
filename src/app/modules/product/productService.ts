@@ -1,7 +1,7 @@
+import { FilterQuery } from 'mongoose';
 import { product } from './productInterface';
 import productModel from './productModel';
 
-let productService = {};
 const createProduct = async (products: product) => {
   try {
     const res = await productModel.create(products);
@@ -14,7 +14,7 @@ const getProductService = async (
   productId: string | null,
   searchParam: string | null,
 ) => {
-  let filter = {};
+  let filter: unknown = {};
 
   //   console.log(filter, productId);
   if (productId) {
@@ -54,7 +54,7 @@ const updateProductService = async (
     return res;
   } else if (isCheck == 'order') {
     // console.log(Uproduct);
-    const res = await productModel.updateOne(
+    await productModel.updateOne(
       { _id: productId },
       {
         $inc: {
@@ -67,7 +67,7 @@ const updateProductService = async (
     );
 
     if (Uproduct.inventory.quantity - quantity <= 0) {
-      const res = await productModel.updateOne(
+      await productModel.updateOne(
         { _id: productId },
         {
           $set: {
@@ -104,7 +104,7 @@ const deleteProductService = async (productId: string) => {
   }
 };
 
-export default productService = {
+export const productService = {
   createProduct,
   getProductService,
   updateProductService,

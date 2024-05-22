@@ -1,8 +1,7 @@
-import express, { Application, NextFunction, Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import productRoute from './app/modules/product/productRoute';
 import orderRoute from './app/modules/order/orderRoute';
-import { error } from 'console';
 const app: Application = express();
 
 app.use(cors());
@@ -13,8 +12,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('E-commerce is running');
 });
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-  res.json({
+app.use((req: Request, res: Response) => {
+  return res.json({
     success: false,
     message: 'Route not found',
   });

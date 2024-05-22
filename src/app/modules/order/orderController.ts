@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import orderValidationSchema from './orderValidation';
-import orderService from './orderService';
+import { orderService } from './orderService';
 import orderModel from './orderModel';
-import productService from '../product/productService';
+import { productService } from '../product/productService';
+import { FilterQuery } from 'mongoose';
 
 let orderController = {};
 const newOrder = async (req: Request, res: Response) => {
@@ -16,8 +17,8 @@ const newOrder = async (req: Request, res: Response) => {
   if (checking) {
     if (checking.inventory.quantity >= data.quantity) {
       try {
-        const result = await orderService.newOrder(value);
-        const Minus = await productService.updateProductService(
+        await orderService.newOrder(value);
+        await productService.updateProductService(
           checking,
           data.productId,
           'order',
@@ -69,9 +70,9 @@ const getOrder = async (req: Request, res: Response) => {
         message: 'email does not exist',
       });
     }
-  } catch (error) {
+  } catch (error: unknown) {
     res.json({ message: error.message });
   }
 };
-
-export default orderController = { newOrder, getOrder };
+orderController = { newOrder, getOrder };
+export default orderController;

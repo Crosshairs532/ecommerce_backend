@@ -13,7 +13,7 @@
   "rules": {
     "no-unused-vars": "error",
     "no-undef": "error",
-    "no-unused-expressions": "error"
+    "no-unused-expressions": "warn"
   },
   "env": {
     "browser": true,

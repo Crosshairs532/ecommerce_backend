@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:prod": "nodemon ./dist/server.js",
     "prettier:fix": "npx prettier --write src",
     "prettier:format": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
     "build": "tsc",

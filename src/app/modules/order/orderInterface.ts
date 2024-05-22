@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Model } from 'mongoose';
 
 export type order = {
@@ -9,6 +10,6 @@ export type order = {
 
 /* statics method */
 export interface orderMethod extends Model<order> {
-  orderMethodCheck: any;
+  orderMethodCheck;
   checkQuantity(id: string): Promise<order | null>;
 }

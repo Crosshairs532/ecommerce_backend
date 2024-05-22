@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import productValidation from './productValidation';
-import productService from './productService';
+import { productService } from './productService';
 
 const createdProduct = async (req: Request, res: Response) => {
   const data = req.body;
@@ -11,7 +11,7 @@ const createdProduct = async (req: Request, res: Response) => {
     if (error) {
       return res.status(500).json({ message: error });
     }
-    const result = await productService.createProduct(data);
+    await productService.createProduct(data);
     return res.status(200).json({
       success: true,
       message: 'Product created successfully!',
@@ -24,8 +24,16 @@ const createdProduct = async (req: Request, res: Response) => {
 const getProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
   const { searchTerm } = req.query;
-  console.log(searchTerm);
-
+  console.log(Object.keys(req.query)[0]);
+  if (
+    Object.keys(req.query).length > 0 &&
+    Object.keys(req.query)[0] != 'searchTerm'
+  ) {
+    return res.json({
+      success: false,
+      message: 'Route not found',
+    });
+  }
   try {
     const result = await productService.getProductService(
       productId,
@@ -43,7 +51,7 @@ const getProduct = async (req: Request, res: Response) => {
     } else {
       res.status(500).json({ success: false, message: 'no such value exists' });
     }
-  } catch (error) {
+  } catch (error: unknown) {
     res.status(500).json({ success: false, message: error.message });
   }
 };

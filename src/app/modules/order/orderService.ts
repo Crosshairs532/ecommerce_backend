@@ -1,7 +1,6 @@
 import { order } from './orderInterface';
 import orderModel from './orderModel';
 
-let orderService = {};
 const newOrder = async (value: order) => {
   try {
     const res = await orderModel.create(value);
@@ -18,5 +17,4 @@ const getOrder = async (param: string | null) => {
     return err;
   }
 };
-
-export default orderService = { newOrder, getOrder };
+export const orderService = { newOrder, getOrder };

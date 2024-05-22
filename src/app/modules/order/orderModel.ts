@@ -1,7 +1,6 @@
-import { Model, Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { order, orderMethod } from './orderInterface';
-import { ObjectId } from 'bson';
-import productService from '../product/productService';
+import { productService } from '../product/productService';
 
 const orderSchema = new Schema<order, orderMethod>({
   email: {
