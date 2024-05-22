@@ -57,6 +57,13 @@ const newOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const filter = {};
     const { email } = req.query;
+    if (Object.keys(req.query).length > 0 &&
+        Object.keys(req.query)[0] != 'email') {
+        return res.json({
+            success: false,
+            message: 'Route not found',
+        });
+    }
     if (email) {
         filter['email'] = email;
     }

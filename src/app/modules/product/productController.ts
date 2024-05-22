@@ -49,7 +49,9 @@ const getProduct = async (req: Request, res: Response) => {
         data: result,
       });
     } else {
-      res.status(500).json({ success: false, message: 'no such value exists' });
+      return res
+        .status(500)
+        .json({ success: false, message: 'no such value exists' });
     }
   } catch (error: unknown) {
     res.status(500).json({ success: false, message: error.message });

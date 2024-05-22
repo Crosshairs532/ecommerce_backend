@@ -56,7 +56,9 @@ const getProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             });
         }
         else {
-            res.status(500).json({ success: false, message: 'no such value exists' });
+            return res
+                .status(500)
+                .json({ success: false, message: 'no such value exists' });
         }
     }
     catch (error) {

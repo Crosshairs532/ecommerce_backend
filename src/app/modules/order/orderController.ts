@@ -49,6 +49,15 @@ const newOrder = async (req: Request, res: Response) => {
 const getOrder = async (req: Request, res: Response) => {
   const filter = {};
   const { email } = req.query;
+  if (
+    Object.keys(req.query).length > 0 &&
+    Object.keys(req.query)[0] != 'email'
+  ) {
+    return res.json({
+      success: false,
+      message: 'Route not found',
+    });
+  }
 
   if (email) {
     filter['email'] = email;
