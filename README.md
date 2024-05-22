@@ -32,7 +32,8 @@ npm i joi
 npm install typescript --save-dev
 ```
 ```
-npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev```
+npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev
+```
 ```
 npm install --save-dev prettier
 ```
