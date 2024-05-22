@@ -11,8 +11,9 @@ ___
 ```
 ## These are some dependencies and dev-dependencies you have to install. 
 ___
-1.`npm i cors`
-2.`npm install dotenv --save`
+
+1. `npm i cors`
+2. `npm install dotenv --save`
 3.`npm i express`
 4.`npm install mongoose --save`
 5.`npm i joi`
