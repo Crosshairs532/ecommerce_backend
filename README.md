@@ -14,16 +14,16 @@ ___
 
 1. `npm i cors`
 2. `npm install dotenv --save`
-3.`npm i express`
-4.`npm install mongoose --save`
-5.`npm i joi`
-6.`npm install typescript --save-dev`
-7.`npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev`
-8.`npm install --save-dev prettier`
-9.`npm install --save-dev eslint-config-prettier`
-10.`npm i ts-node-dev --save-dev`
-11.`npm i @types/cors`
-12.`npm i @types/express`
+3. `npm i express`
+4. `npm install mongoose --save`
+5. `npm i joi`
+6. `npm install typescript --save-dev`
+7. `npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev`
+8. `npm install --save-dev prettier`
+9. `npm install --save-dev eslint-config-prettier`
+10. `npm i ts-node-dev --save-dev`
+11. `npm i @types/cors`
+12. `npm i @types/express`
 
 ### Go to the package.json file. You will see these scripts which to make your work easy.
 ___
