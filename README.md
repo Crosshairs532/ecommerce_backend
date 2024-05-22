@@ -12,18 +12,42 @@ ___
 ### These are some dependencies and dev-dependencies you have to install. 
 ___
 
-```npm i cors```
-```npm install dotenv --save```
-```npm i express```
-```npm install mongoose --save```
-```npm i joi```
-```npm install typescript --save-dev```
-```npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev```
-```npm install --save-dev prettier```
-```npm install --save-dev eslint-config-prettier```
-```npm i ts-node-dev --save-dev```
-```npm i @types/cors```
-```npm i @types/express```
+```
+npm i cors
+
+```
+```
+npm install dotenv --save
+```
+```
+npm i express
+```
+```
+npm install mongoose --save
+```
+```
+npm i joi
+```
+```
+npm install typescript --save-dev
+```
+```
+npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev```
+```
+npm install --save-dev prettier
+```
+```
+npm install --save-dev eslint-config-prettier
+```
+```
+npm i ts-node-dev --save-dev
+```
+```
+npm i @types/cors
+```
+```
+npm i @types/express
+```
 
 #### Go to the package.json file. You will see these scripts which to make your work easy.
 ___
