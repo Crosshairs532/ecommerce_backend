@@ -11,11 +11,12 @@ const createdProduct = async (req: Request, res: Response) => {
     if (error) {
       return res.status(500).json({ message: error });
     }
-    await productService.createProduct(data);
+    const createdData = await productService.createProduct(data);
+    console.log(createdData, 'data create');
     return res.status(200).json({
       success: true,
       message: 'Product created successfully!',
-      data: value,
+      data: createdData,
     });
   } catch (err: unknown) {
     res.status(500).json({ message: err.message });

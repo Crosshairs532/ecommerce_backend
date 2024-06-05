@@ -13,7 +13,7 @@ const newOrder = async (req: Request, res: Response) => {
     return res.status(500).json({ success: false, message: 'something wrong' });
   }
   const checking = await orderModel.orderMethodCheck(value.productId);
-  console.log(checking);
+  // console.log(checking);
   if (checking) {
     if (checking.inventory.quantity >= data.quantity) {
       try {
