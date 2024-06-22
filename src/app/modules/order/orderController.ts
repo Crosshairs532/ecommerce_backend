@@ -3,9 +3,7 @@ import orderValidationSchema from './orderValidation';
 import { orderService } from './orderService';
 import orderModel from './orderModel';
 import { productService } from '../product/productService';
-import { FilterQuery } from 'mongoose';
 
-let orderController = {};
 const newOrder = async (req: Request, res: Response) => {
   const data = req.body;
   const { error, value } = orderValidationSchema.validate(data);
@@ -30,7 +28,7 @@ const newOrder = async (req: Request, res: Response) => {
           message: 'Order created successfully!',
           data: value,
         });
-      } catch (error) {
+      } catch (error: any) {
         return res.status(500).json({ message: error.message });
       }
     } else {
@@ -47,7 +45,7 @@ const newOrder = async (req: Request, res: Response) => {
   }
 };
 const getOrder = async (req: Request, res: Response) => {
-  const filter = {};
+  const filter: Record<string, unknown> = {};
   const { email } = req.query;
   if (
     Object.keys(req.query).length > 0 &&
@@ -65,7 +63,7 @@ const getOrder = async (req: Request, res: Response) => {
 
   try {
     const result = await orderService.getOrder(filter);
-    if (result.length > 0) {
+    if (result?.length > 0) {
       return res.status(200).json({
         success: true,
         message: email
@@ -79,9 +77,8 @@ const getOrder = async (req: Request, res: Response) => {
         message: 'email does not exist',
       });
     }
-  } catch (error: unknown) {
+  } catch (error: any) {
     res.json({ message: error.message });
   }
 };
-orderController = { newOrder, getOrder };
-export default orderController;
+export const orderController = { newOrder, getOrder };

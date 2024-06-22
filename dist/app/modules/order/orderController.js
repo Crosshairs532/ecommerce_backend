@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.orderController = void 0;
 const orderValidation_1 = __importDefault(require("./orderValidation"));
 const orderService_1 = require("./orderService");
 const orderModel_1 = __importDefault(require("./orderModel"));
 const productService_1 = require("../product/productService");
-let orderController = {};
 const newOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
     const { error, value } = orderValidation_1.default.validate(data);
@@ -24,7 +24,7 @@ const newOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(500).json({ success: false, message: 'something wrong' });
     }
     const checking = yield orderModel_1.default.orderMethodCheck(value.productId);
-    console.log(checking);
+    // console.log(checking);
     if (checking) {
         if (checking.inventory.quantity >= data.quantity) {
             try {
@@ -69,7 +69,7 @@ const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     try {
         const result = yield orderService_1.orderService.getOrder(filter);
-        if (result.length > 0) {
+        if ((result === null || result === void 0 ? void 0 : result.length) > 0) {
             return res.status(200).json({
                 success: true,
                 message: email
@@ -89,5 +89,4 @@ const getOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.json({ message: error.message });
     }
 });
-orderController = { newOrder, getOrder };
-exports.default = orderController;
+exports.orderController = { newOrder, getOrder };

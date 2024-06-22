@@ -14,7 +14,7 @@ const getProductService = async (
   productId: string | null,
   searchParam: string | null,
 ) => {
-  let filter: unknown = {};
+  let filter: Record<string, unknown> = {};
 
   //   console.log(filter, productId);
   if (productId) {

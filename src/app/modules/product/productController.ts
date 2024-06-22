@@ -18,7 +18,7 @@ const createdProduct = async (req: Request, res: Response) => {
       message: 'Product created successfully!',
       data: createdData,
     });
-  } catch (err: unknown) {
+  } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
 };
@@ -54,7 +54,7 @@ const getProduct = async (req: Request, res: Response) => {
         .status(500)
         .json({ success: false, message: 'no such value exists' });
     }
-  } catch (error: unknown) {
+  } catch (error: any) {
     res.status(500).json({ success: false, message: error.message });
   }
 };

@@ -9,6 +9,7 @@ export type order = {
 };
 
 /* statics method */
+
 export interface orderMethod extends Model<order> {
   orderMethodCheck;
   checkQuantity(id: string): Promise<order | null>;

@@ -9,7 +9,7 @@ const newOrder = async (value: order) => {
     return error;
   }
 };
-const getOrder = async (param: string | null) => {
+const getOrder = async (param: Record<string, unknown>) => {
   try {
     const res = await orderModel.find(param);
     return res;

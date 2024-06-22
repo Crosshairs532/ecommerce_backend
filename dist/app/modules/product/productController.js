@@ -21,11 +21,12 @@ const createdProduct = (req, res) => __awaiter(void 0, void 0, void 0, function*
         if (error) {
             return res.status(500).json({ message: error });
         }
-        yield productService_1.productService.createProduct(data);
+        const createdData = yield productService_1.productService.createProduct(data);
+        console.log(createdData, 'data create');
         return res.status(200).json({
             success: true,
             message: 'Product created successfully!',
-            data: value,
+            data: createdData,
         });
     }
     catch (err) {

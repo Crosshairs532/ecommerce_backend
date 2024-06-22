@@ -20,6 +20,7 @@ const orderSchema = new Schema<order, orderMethod>({
     required: [true, 'quantity require'],
   },
 });
+
 orderSchema.statics.orderMethodCheck = async (id: string) => {
   // const filter = { _id: new ObjectId(id) };
   const order = await productService.getProductService(id, null);
